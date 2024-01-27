@@ -1,5 +1,7 @@
 import g4f
 import re
+from head.speak import speak
+from head.listen import take_command
 
 
 messages = [
@@ -59,10 +61,13 @@ def find_code(text):
     
     
 while 1:
-    query = input('>>: ')
+    query = take_command()
     res = GPT(query)
-    python_code = find_code(res)    
+    python_code = find_code(res)
     exec(python_code)
+    res = res.replace(python_code, '')
+    res = res.replace('python', '')
+    speak(res)
 
 """
     

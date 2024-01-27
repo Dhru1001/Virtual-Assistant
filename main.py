@@ -7,52 +7,13 @@ from scrapper.bot_scrapper import *
 from datetime import datetime
 from gpt4 import *
 from functions.emailsender import *
-
+from head.speak import speak
+from head.listen import take_command
 # en-AU-WilliamNeural
 # en-CA-ClaraNeural
 # en-CA-LiamNeural
 
 sleep_mode = False
-
-def speak(text):
-    voice = "en-AU-WilliamNeural"
-    command = (
-        f'edge-tts --voice "{voice}" --text "{text}" --write-media "audio/output.mp3"'
-    )
-    os.system(command)
-
-    pygame.init()
-
-    pygame.mixer.init()
-
-    try:
-        pygame.mixer.music.load("audio/output.mp3")
-        pygame.mixer.music.play()
-        while pygame.mixer.music.get_busy():
-            pygame.time.Clock().tick(10)
-    except Exception as e:
-        print(e)
-    finally:
-        pygame.mixer.music.stop()
-        pygame.mixer.quit()
-
-
-def take_command():
-    r = sr.Recognizer()
-    source = sr.Microphone()  # Create an instance of the Microphone class
-    with source as audio_source:  # Use the instance in the with block
-        print("Listening...")
-        r.pause_threshold = 1
-        audio = r.listen(audio_source)
-
-    try:
-        print("Recognizing...")
-        query = r.recognize_google(audio, language="en-us")
-    except Exception as e:
-        print(e)
-        return ""
-
-    return query
 
 
 click_on_chat_button()
