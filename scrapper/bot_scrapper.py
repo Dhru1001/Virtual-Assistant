@@ -30,14 +30,14 @@ def click_on_chat_button():
             loader = driver.find_element(
                 By.CLASS_NAME, 'bpw-msg-list-loading')
             is_visible = loader.is_displayed()
-            print('Initializing ava...')
+            print('Initializing Liam...')
 
             if not is_visible:
                 break
             else:
                 pass
         except NoSuchElementException:
-            print('AVA is Initializing.')
+            print('Liam is Initializing.')
             break
         sleep(1)
 
@@ -53,7 +53,7 @@ def sendQuery(text):
 
 
 def isBubbleLoaderVisible():
-    print('AVA Is Typing...')
+    print('Liam Is Typing...')
     while True:
         try:
             bubble_loader = driver.find_element(
@@ -65,7 +65,7 @@ def isBubbleLoaderVisible():
             else:
                 pass
         except NoSuchElementException:
-            print('AVA Is Sending Mesage...')
+            print('Liam Is Sending Mesage...')
             break
         sleep(5)
 
@@ -78,7 +78,7 @@ def retriveData():
     global chatnumber 
     sleep(5)
     p =driver.find_element(By.XPATH, f'/html/body/div/div/div/div[2]/div[1]/div/div/div[{chatnumber}]/div/div[2]/div/div/div/div/div/p')
-    print("\nAVA: " + p.text)
+    print("\nLiam: " + p.text)
     chatnumber = chatnumber + 2
     return(p.text)
 
